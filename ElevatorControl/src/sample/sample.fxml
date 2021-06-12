@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="351.0" prefWidth="377.0">
+         <children>
+            <Button fx:id="requestButton" layoutX="163.0" layoutY="253.0" mnemonicParsing="false" onAction="#chooseFloor" text="Request" />
+            <Label layoutX="138.0" layoutY="26.0" text="Select Floor">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="input" layoutX="114.0" layoutY="176.0" />
+            <Label layoutX="147.0" layoutY="150.0" text="Enter floor here" />
+         </children></AnchorPane>
+   </children>
+</GridPane>
