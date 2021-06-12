@@ -1,53 +1,66 @@
 package sample;
 
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 public class Elevator {
     Random r = new Random();
+    // holds current floor
     private int currentFloor;
-    public Stack<Integer> stack = new Stack<>();
+    // holds requests for floors
+    public Queue<Integer> floors = new LinkedList<>();
+    // constructor
     public Elevator(){
         currentFloor = 1;
     }
+    // return current floor
     public int getCurrentFloor() {
         return currentFloor;
     }
+    // request a floor and go to that floor
+    // then, request a random floor from passenger
     public void floorRequest(int nextFloor) {
-        stack.push(nextFloor);
+        floors.add(nextFloor);
         move();
-        stack.push(r.nextInt(20));
+        floors.add(r.nextInt(20));
         move();
     }
+    // move elevator down
     private void goDown() {
-        if (stack.isEmpty()) {
+        if (floors.isEmpty()) {
             return;
         }
-        while (stack.peek() != currentFloor) {
+        while (floors.peek() != currentFloor) {
             currentFloor--;
         }
-        stack.pop();
+        floors.remove();
     }
+    // move elevator up
     private void goUp() {
-        if (stack.isEmpty()) {
+        if (floors.isEmpty()) {
             return;
         }
-        while (stack.peek() != currentFloor) {
+        while (floors.peek() != currentFloor) {
             currentFloor++;
         }
-        stack.pop();
+        floors.remove();
     }
+    // elevator moves in order of requested floors
     private void move() {
-        if (stack.isEmpty()) {
-            return;
-        } else if (stack.peek() == currentFloor) {
-            stack.pop();
+        if (floors.isEmpty()) {
             return;
         }
-        if (stack.peek() < currentFloor){
+        if (floors.peek() < currentFloor){
             goDown();
-        } else {
+        } else  if (floors.peek() > currentFloor){
             goUp();
+        }
+        else {
+            floors.remove();
+        }
+        if (!floors.isEmpty()) {
+            move();
         }
     }
 }

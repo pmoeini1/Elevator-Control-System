@@ -4,20 +4,20 @@ public class ElevatorSystem {
     private Elevator a = new Elevator();
     private Elevator b = new Elevator();
     private Elevator c = new Elevator();
-
+    // empty constructor
     public ElevatorSystem () {}
-
+    // search for free or closest elevator, and send request to that elevator
     public void request(int nextFloor) {
         boolean selected = false;
         Elevator sel = a;
-        if (a.stack.isEmpty()) {
+        if (a.floors.isEmpty()) {
             selected = true;
             a.floorRequest(nextFloor);
-        } else if (b.stack.isEmpty()) {
+        } else if (b.floors.isEmpty()) {
             selected = true;
             sel = b;
             b.floorRequest(nextFloor);
-        } else if (c.stack.isEmpty()) {
+        } else if (c.floors.isEmpty()) {
             selected = true;
             sel = c;
             c.floorRequest(nextFloor);
